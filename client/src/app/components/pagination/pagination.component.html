@@ -1,0 +1,25 @@
+<nav aria-label="Page navigation" *ngIf="totalPage>0">
+  <ul class="pagination">
+    <li (click)="getChangedData(page-1<1?1:page-1)">
+      <a href="javascript: void(0);" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+
+    <li *ngIf="totalPage>5"><span>···</span></li>
+    <li *ngFor="let inx of showPage; trackBy: trackByList;let i=index;" (click)="getChangedData(inx)"><span>{{inx}}</span></li>
+    <li *ngIf="totalPage>5"><span>···</span></li>
+    <li (click)="getChangedData(page+1>totalPage?totalPage:page+1)">
+      <a href="javascript: void(0);" aria-label="Next" class="next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+    <li class="page-info">{{page}}　/　{{totalPage}}　</li>
+    <li class="form-inline">
+      <div class="form-group">
+        <input type="number" class="form-control" [(ngModel)]="goToPage" [min]="1" [max]="totalPage">
+      </div>
+    </li>
+    <li><button type="button" class="btn btn-default" (click)="getChangedData()">Go</button></li>
+  </ul>
+</nav>

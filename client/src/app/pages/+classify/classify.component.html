@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="breadcrumbs">
+          <ul>
+            <li><a>当前位置：</a></li>
+            <li><a routerLink="/home">首页</a></li>
+            <li>
+              <a>{{ getClassifyTitle() }}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12 con-left">
+        <card-list [cardList]="cardList"></card-list>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="pull-right">
+          <pagination [total]="total" [limit]="limit" [page]="curPage" [getCurPageDatas]="getCurPageData"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 hot-list">
+    <app-ol [list]="hotLists" [_title]="title"></app-ol>
+  </div>
+</div>

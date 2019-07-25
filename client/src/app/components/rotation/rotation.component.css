@@ -1,0 +1,140 @@
+.leaf-container {
+	position: relative;
+	border: 2px solid #ccc;
+	border-radius: 8px;
+	padding: 15px 23px;
+	overflow: hidden;
+}
+.slider{
+    position: relative;
+	width: 1024px;
+	height: 550px;
+    margin: 0 auto;
+	overflow: hidden;
+	z-index: 1;
+}
+.slider-main{
+    width: 100%;
+	list-style: none;
+    padding: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+.slider-main > li{
+	float:left;
+}
+.slider-main > li a{
+	display: block;
+}
+.slider-main > li a img{
+	width: 1024px;
+	height: 550px;
+}
+
+.slider-main > li .slider-disc{
+	width: 720px;
+    position: absolute;
+	bottom: 40px;
+	left:50%;
+	line-height: 30px;
+	text-align: center;
+	font-size:16px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #fff inset;
+	text-shadow: 0 1px 0 #fff;
+	background-color: #F5F5F5;
+	filter: alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity:0.5;
+	transition: background-color 0.3s linear,
+				opacity 0.3s linear;
+
+	padding:3px 0;
+	margin-left: -360px;
+	z-index: 10;
+}
+.slider-main > li .slider-disc:hover{
+	background-color: #fff;
+	filter: alpha(opacity=80);
+	-moz-opacity:0.8;
+	opacity:0.8;
+}
+
+/* 切换按钮 */
+    /* 上一个 */
+.slider-btn{
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    z-index: 10;
+}
+.slider-btn .slider-btn-prev,
+.slider-btn .slider-btn-next{
+    position: absolute;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    text-indent: -9999px;
+    margin-top: -20px;
+    transition: all .5s linear;
+}
+
+.slider-btn .slider-btn-prev {
+    left: -45px;
+    background: url(/assets/images/icon/prev.png) 50% 50% no-repeat;
+}
+
+.slider:hover .slider-btn-prev{
+    left: 5px;
+}
+.slider .slider-btn-prev:hover{
+	cursor: pointer;
+}
+    /* 下一个 */
+
+.slider-btn .slider-btn-next{
+    right: -45px;
+    background: url(/assets/images/icon/next.png) 50% 50% no-repeat;
+    transition: all .5s linear;
+}
+
+.slider:hover .slider-btn-next{
+    right: 5px;
+}
+.slider .slider-btn-next:hover{
+	cursor: pointer;
+}
+
+/* 高亮导航部分 */
+.slider .slider-nav{
+    position: absolute;
+    width:100%;
+    height: 22px;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    z-index: 10;
+}
+.slider .slider-nav li{
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    padding: 0 6px;
+    margin: 0 12px;
+    font-size: 12px;
+    color: #eee;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: none;
+    cursor: pointer;
+}
+.slider .slider-nav li.active{
+    color: #333;
+    background: #c00;
+}
+.slider .slider-nav li:hover{
+    border: 1px solid #c00;
+    background: #c00;
+}

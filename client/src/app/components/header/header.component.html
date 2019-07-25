@@ -1,0 +1,31 @@
+<div class="row header">
+  <div class="col-sm-3 logo">
+    <div>
+      <a routerLink="/home">
+        <img src="/assets/images/logo.png" alt="" />
+      </a>
+    </div>
+  </div>
+  <div class="col-sm-3 pull-right header-reg">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a routerLink="/manage"><span class="glyphicon glyphicon-cog"></span></a>
+      </li>
+      <li class="list-group-item"><a routerLink="" target="_self">加入收藏</a></li>
+      <li *ngIf="login" class="list-group-item" (click)="logOut()"><a href="javascript: void(0);">退出登录</a></li>
+      <li *ngIf="login" class="list-group-item">
+        <span>欢迎：{{ name }}</span>
+      </li>
+      <li *ngIf="!login" class="list-group-item"><a routerLink="/login" target="_self">登录</a></li>
+      <li *ngIf="!login" class="list-group-item"><a routerLink="/register" target="_self">注册</a></li>
+    </ul>
+  </div>
+  <div class="col-sm-5 pull-right header-search">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for..." />
+      <div class="input-group-btn">
+        <button class="btn btn-danger" type="button">Go!</button>
+      </div>
+    </div>
+  </div>
+</div>

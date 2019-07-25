@@ -1,0 +1,149 @@
+<div class="container-fluid">
+  <button class="btn btn-add" (click)="addMovie()"><span class="glyphicon glyphicon-plus"></span></button>
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card-1
+        *ngFor="let item of data"
+        [data]="item"
+        [edit]="editMovie"
+        [del]="delMovie"
+        [showDetail]="showDetail"
+      ></app-card-1>
+    </div>
+  </div>
+  <div class="row detail" [class.show]="isShowDetail">
+    <div class="col-sm-12">
+      <table class="table">
+        <tr>
+          <th>name:</th>
+          <td><input class="form-control" type="text" [(ngModel)]="curData.name" [readonly]="isReadonly" /></td>
+        </tr>
+        <tr>
+          <th>aliasName:</th>
+          <td><input class="form-control" type="text" [(ngModel)]="curData.aliasName" [readonly]="isReadonly" /></td>
+        </tr>
+        <tr>
+          <th>classify:</th>
+          <!-- <td><input class="form-control" type="text" [(ngModel)]="curData.classify" [readonly]="isReadonly"/></td> -->
+          <td>
+            <div class="dropdown classify-dropdown">
+              <button
+                class="btn btn-default dropdown-toggle"
+                type="button"
+                id="dropdownMenu1"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="true"
+                [disabled]="isReadonly"
+              >
+                {{ getClassifyTitle() || '请选择分类' }}
+                <span class="caret"></span>
+              </button>
+              <ul *ngIf="classifyList" class="dropdown-menu">
+                <li
+                  *ngFor="let classify of classifyList; trackBy: trackByList"
+                  (click)="curData.classify = classify.classify"
+                >
+                  {{ classify.title }}
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>publishDate:</th>
+          <td>
+            <input
+              class="form-control fixed-width"
+              type="text"
+              [value]="curData.publishDate | date: 'y-MM-dd'"
+              (input)="curData.publistDate = $event"
+              [readonly]="isReadonly"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>country:</th>
+          <td>
+            <input class="form-control fixed-width" type="text" [(ngModel)]="curData.country" [readonly]="isReadonly" />
+          </td>
+        </tr>
+        <tr>
+          <th>language:</th>
+          <td><input class="form-control" type="text" [(ngModel)]="curData.language" [readonly]="isReadonly" /></td>
+        </tr>
+        <tr>
+          <th>fileFormat:</th>
+          <td>
+            <input
+              class="form-control fixed-width"
+              type="text"
+              [(ngModel)]="curData.fileFormat"
+              [readonly]="isReadonly"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>clarity:</th>
+          <td><input class="form-control" type="text" [(ngModel)]="curData.clarity" [readonly]="isReadonly" /></td>
+        </tr>
+        <tr>
+          <th>resolution:</th>
+          <td class="resolution">
+            <input class="form-control" type="text" [(ngModel)]="curData.resolutionW" [readonly]="isReadonly" />
+            X
+            <input class="form-control" type="text" [(ngModel)]="curData.resolutionH" [readonly]="isReadonly" />
+          </td>
+        </tr>
+        <tr>
+          <th>duration:</th>
+          <td>
+            <input
+              class="form-control fixed-width"
+              type="text"
+              [(ngModel)]="curData.duration"
+              [readonly]="isReadonly"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>fileSize:</th>
+          <td>
+            <input
+              class="form-control fixed-width"
+              type="text"
+              [(ngModel)]="curData.fileSize"
+              [readonly]="isReadonly"
+            />
+          </td>
+        </tr>
+        <tr>
+          <th>description:</th>
+          <td>
+            <textarea
+              class="form-control"
+              type="text"
+              [(ngModel)]="curData.description"
+              rows="5"
+              cols="100"
+              [readonly]="isReadonly"
+            ></textarea>
+          </td>
+        </tr>
+        <tr>
+          <th>imgUrl:</th>
+          <td><input class="form-control" type="text" [(ngModel)]="curData.imgUrl" [readonly]="isReadonly" /></td>
+        </tr>
+      </table>
+
+      <div class="btn-toolbar pull-right" role="toolbar" aria-label="...">
+        <div class="btn-group" role="group" aria-label="...">
+          <button class="btn btn-primary" (click)="submitMovie()">确认</button>
+        </div>
+        <div class="btn-group" role="group" aria-label="...">
+          <button class="btn btn-default" (click)="cancelEdit()">返回</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

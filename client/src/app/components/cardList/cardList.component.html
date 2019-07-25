@@ -1,0 +1,9 @@
+<ul *ngIf="cardList" class="cardlist">
+  <li *ngFor="let card of cardList; trackBy: trackByList">
+    <a [routerLink]="['/detail', card.id]">
+      <img src="{{ card.imgUrl }}" alt="" />
+      <span>{{ card.name }}</span>
+      <span>{{ card.date | date: 'yyyy-MM-dd' }}</span>
+    </a>
+  </li>
+</ul>

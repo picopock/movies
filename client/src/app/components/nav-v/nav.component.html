@@ -1,0 +1,14 @@
+<ul class="nav nav-pills nav-stacked" *ngIf="links">
+	<li *ngFor="let link of links; trackBy: trackByLinks" role="presentation" routerLinkActive="active">
+		<a routerLink="{{link.href}}">
+			<span class="glyphicon glyphicon-{{link.icon}}"></span>
+			{{link.title}}
+		</a>
+	</li>
+	<li (click)="logOut()">
+		<a href="javascript: void(0);" >
+			<span class="glyphicon glyphicon-log-out"></span>
+			LogOut
+		</a>
+	</li>
+</ul>

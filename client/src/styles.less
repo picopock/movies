@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #f6f6f6;
+}
+button{
+  outline: none!important;
+}
+
+a{
+  text-decoration: none!important;
+}
+
+ul {
+list-style: none;
+}
+
+th,td {
+vertical-align: middle!important;
+}
+
+.form-control {
+float: none;
+border-color: #C40809;
+}
+
+.form-control:focus {
+border-color: #C40809;
+-webkit-box-shadow: inset 0 1px 1px rgba(196,8,9,.075), 0 0 8px rgba(196,8,9,.6);
+box-shadow: inset 0 1px 1px rgba(196,8,9,.075), 0 0 8px rgba(196,8,9,.6);
+}
+
+/***********面包屑导航****************/
+.breadcrumbs{
+display: inline-block;
+background: #F70935;
+border: 1px solid #C40809;
+border-radius: 8px;
+box-shadow: 0 0 4px rgba(196,8,9,0.2);
+}
+.breadcrumbs > ul {
+  padding: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.breadcrumbs li{
+float: left;
+}
+
+.breadcrumbs li a{
+padding: .7em 1em .7em 2em;
+float: left;
+color: #fff;
+position: relative;
+text-shadow: 0 1px 0 rgba(255,255,255,.5);
+background-color: #f00;
+background-image: linear-gradient(to right,#C40809,#F70935);
+}
+
+.breadcrumbs li:first-child a,
+.breadcrumbs li:last-child a{
+padding-left: 1em;
+border-radius: 5px 0 0 5px;
+background-color: #f00;
+background-image: linear-gradient(to right,#C40809,#F70935);
+cursor: default;
+}
+.breadcrumbs li:last-child a{
+border-radius: 0 5px 5px 0;
+padding-left: 2em;
+font-weight: bold;
+}
+
+.breadcrumbs a:hover{
+background: #F70935;
+}
+
+.breadcrumbs a::after,
+.breadcrumbs a::before{
+content: "";
+border-top: 1.5em solid transparent;
+border-bottom: 1.5em solid transparent;
+border-left: 1em solid;
+position: absolute;
+top: 50%;
+right: -1em;
+margin-top: -1.5em;
+}
+
+.breadcrumbs a::after{
+z-index: 2;
+border-left-color: #F70935;
+}
+
+.breadcrumbs a::before{
+border-left-color: #C40809;
+right: -1.1em;
+z-index: 1;
+}
+
+.breadcrumbs a:hover::after{
+border-left-color: #F70935;
+}
+
+.breadcrumbs li:last-child a::after,
+.breadcrumbs li:last-child a::before{
+content: normal;
+}

@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-sm-8 detail-left">
+    <div class="breadcrumbs">
+      <ul>
+        <li><a>当前位置：</a></li>
+        <li><a routerLink="/home">首页</a></li>
+        <li *ngIf="!!movie">
+          <a [routerLink]="['/classify', movie ? movie.classify : '']">{{ getClassifyTitle() }}</a>
+        </li>
+        <li *ngIf="!!movie">
+          <a>{{ movie.name }} 下载页面</a>
+        </li>
+      </ul>
+    </div>
+    <div class="details" *ngIf="!!movie">
+      <h3>{{ movie.name }}</h3>
+      <div class="det-1">
+        <div class="det-1-left"><img src="{{ movie.imgUrl }}" /></div>
+        <div class="det-1-right">
+          <p>
+            <span>中文名：</span><span>{{ movie.name }}</span>
+          </p>
+          <p>
+            <span>别名：</span><span>{{ movie.aliasName }}</span>
+          </p>
+          <p>
+            <span>分类：</span><span>{{ getClassifyTitle() }}</span>
+          </p>
+          <p>
+            <span>发行日期：</span><span>{{ movie.publishDate | date: 'yyyy-MM-dd' }}</span>
+          </p>
+          <p>
+            <span>国家：</span><span>{{ movie.country }}</span>
+          </p>
+          <p>
+            <span>语言：</span><span>{{ movie.language }}</span>
+          </p>
+          <p>
+            <span>文件格式：</span><span>{{ movie.fileFormat }}</span>
+          </p>
+          <p>
+            <span>视频尺寸：</span><span>{{ movie.resolution }}</span>
+          </p>
+          <p>
+            <span>清晰度：</span><span>{{ movie.clarity }}</span>
+          </p>
+          <p>
+            <span>片长：</span><span>{{ movie.duration }}</span
+            >分钟
+          </p>
+          <p>
+            <span>文件大小：</span><span>{{ movie.fileSize }}</span
+            >GB
+          </p>
+        </div>
+      </div>
+      <div>
+        <h4>剧情：</h4>
+        <p>{{ movie.description }}</p>
+      </div>
+      <div class="download">
+        <h3>资源下载地址：</h3>
+        <ul *ngIf="movie.links">
+          <li *ngFor="let link of movie.links; trackBy: trackByLinks">
+            <a href="{{ link.url }}" target="_self">{{ link.title }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4 detail-right">
+    <app-ol [list]="hotTop20" [_title]="hotTopTitle"></app-ol>
+  </div>
+</div>

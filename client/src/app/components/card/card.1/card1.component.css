@@ -1,0 +1,58 @@
+/*= effect-3 css =*/
+
+.effect-3 {
+  max-height: 302px;
+  min-height: 302px;
+  overflow: hidden;
+}
+
+.effect-3 h3 {
+  padding-top: 7px;
+  line-height: 33px;
+}
+
+.effect-3 .member-image {
+  border-bottom: 5px solid #b30708;
+  transition: 0.4s;
+  height: 212px;
+  width: 100%;
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.effect-3 .member-info {
+  transition: 0.4s;
+}
+
+.effect-3 .member-image img {
+  width: 100%;
+  vertical-align: bottom;
+}
+
+.effect-3 .social-touch {
+  background-color: #b30708;
+  float: left;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 5px 0;
+  width: 100%;
+  transition: 0.4s;
+}
+
+.effect-3:hover .member-image {
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 0 0 50px 50px;
+  height: 81px;
+  display: inline-block;
+  overflow: hidden;
+  width: 109px;
+  transition: 0.4s;
+}
+
+
+/*= effect-3 css end =*/

@@ -1,0 +1,90 @@
+/***********详细内容****************/
+.details{
+	width: 100%;
+	margin-top: 10px;
+  margin-right: -15px;
+	overflow: hidden;
+}
+.details h3{
+	background-color: #fff;
+	color: #C40809;
+	text-align: center;
+}
+.det-1{
+	width: 100%;
+	padding-top: 10px;
+	overflow: hidden;
+}
+.det-1 .det-1-left{
+	display: inline-block;
+  vertical-align: top;
+}
+.det-1 .det-1-left img{
+	width: 400px;
+	max-height: 600px;
+}
+.det-1 .det-1-right{
+	display: inline-block;
+  width: 300px;
+  margin-left: 30px;
+}
+.det-1 .det-1-right p{
+	line-height: 25px;
+}
+.det-1 .det-1-right p span:first-child{
+	display: inline-block;
+	width: 72px;
+}
+
+
+.download{
+  display: inline-block;
+}
+.download h3{
+  display: inline-block;
+  color: #fff;
+  text-align: left;
+  padding: 5px 10px;
+  border-radius: 5px 5px 0 0;
+  background-color: #C40809;
+  margin-bottom: 0;
+}
+.download ul{
+  border: 3px solid #C40809;
+  border-radius: 0 5px 5px 5px;
+  padding: 10px 20px;
+  box-shadow: 0 0 70px #C40809 inset;
+}
+.download ul li{
+  padding-bottom: 10px;
+  height: 22px;
+}
+.download ul li:last-child{
+  padding-bottom: 0;
+}
+.download ul li a:link,.download ul li a:visited{
+  color: #000;
+  font-weight: normal;
+  -webkit-transition:color .3s linear,
+                     font-weight .3s linear;
+  -moz-transition:color .3s linear,
+                  font-weight .3s linear;
+  transition:color .3s linear,
+             font-weight .3s linear;
+}
+.download ul li a:hover,.download ul li a:active{
+  color: #00f;
+  font-weight: bold;
+}
+.detail-left {
+  padding-right: 0;
+}
+.detail-right {
+  padding-left: 0;
+}
+
+@media (max-width: 768px) {
+  .det-1 .det-1-right {
+    display:none;
+  }
+}

@@ -1,0 +1,51 @@
+.member-info > h3,
+.member-info > h5 {
+  height: 14px;
+}
+.effect-1 {
+  border-radius: 5px 5px 0 0;
+  padding-bottom: 40px;
+}
+
+.effect-1 .member-info {
+  height: 86px;
+}
+
+.effect-1 .member-image {
+  width: 144px;
+  height: 149px;
+  border: 2px solid #fff;
+  border-radius: 60px 0;
+  display: inline-block;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.effect-1 .social-touch {
+  background-color: #F70935;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 5px;
+  overflow: hidden;
+  padding: 5px 0 0;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.effect-1 .member-image img {
+  transition: 0.3s;
+  border-radius: 60px 0;
+}
+
+.effect-1:hover .member-image {
+  border-color: #F70935;
+  transition: 0.3s;
+  border-radius: 50%;
+}
+
+.effect-1:hover .social-touch {
+  padding: 6px 0;
+  height: 38px;
+  transition: 0.3s;
+}

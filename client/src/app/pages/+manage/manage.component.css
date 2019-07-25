@@ -1,0 +1,113 @@
+.manage {
+  z-index: 0;
+}
+
+.manage .manage-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
+  background-color: #b30708;
+  z-index: 2;
+}
+
+.manage .manage-content {
+  margin-left: 200px;
+  z-index: 1;
+}
+
+.content-header {
+  position: fixed;
+  left: 200px;
+  top: 0;
+  width: calc(100% - 200px);
+  height: 70px;
+  line-height: 70px;
+  border-bottom: 1px solid #F70935;
+  background-color: #FFF;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.content-header .wrap {
+  position: relative;
+  height: 100%;
+}
+
+.content-header .title {
+    height: 100%;
+    margin-left: 15px;
+    margin-right: 340px;
+    overflow: hidden;
+}
+
+.content-header .calendar {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  width: 325px;
+  padding-left: 15px;
+  border-left: 1px solid #F70935;
+  overflow: hidden;
+}
+
+.calendar div:first-child {
+  line-height: 2;
+  font-size: 20px;
+}
+
+.calendar div:last-child {
+  position: absolute;
+  right: 15px;
+  bottom: -10px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+@-webkit-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@-moz-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@-ms-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@-o-keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+}
+@keyframes marquee {
+  0%{left:0}
+  100%{left: -100%}
+}
+
+.marquee {
+  position: relative;
+  height: 100%;
+  font-size: 38px;
+  overflow: hidden;
+}
+
+.marquee div {
+  position: absolute;
+  word-break: keep-all;
+  white-space: nowrap;
+  overflow: hidden;
+
+  -webkit-animation: marquee 35s linear infinite;
+  -moz-animation: marquee 35s linear infinite;
+  -ms-animation: marquee 35s linear infinite;
+  -o-animation: marquee 35s linear infinite;
+  animation: marquee 35s linear infinite;
+}
+
+.content-main {
+  margin-top: 70px;
+  background-color: #FFF;
+}

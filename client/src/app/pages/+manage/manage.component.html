@@ -1,0 +1,23 @@
+<div class="manage">
+    <div class="manage-nav">
+        <nav-v></nav-v>
+    </div>
+    <div class="manage-content">
+        <div class="content-header">
+            <div class="wrap">
+                <div class="title">
+                    <div class="marquee" [style.width]="marqueeWidth">
+                        <div class="bevel" id="marquee" [style.animationDuration]='animationDuration'>{{title}}</div>
+                    </div>
+                </div>
+                <div class="calendar dilate"><div>{{currentDate | date: "y-MM-dd HH:mm:ss"}}</div><div>{{currentDate | date: 'EEE'}}</div></div>
+            </div>
+        </div>
+        <div class="content-main">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="overlayer">
+        
+    </div>
+</div>

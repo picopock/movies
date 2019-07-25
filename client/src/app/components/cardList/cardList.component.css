@@ -1,0 +1,30 @@
+.cardlist{
+	margin-top: 10px;
+	padding-left: 0px;
+}
+.cardlist li{
+	display: inline-block;
+	padding: 2px 29px 15px 0;
+} 
+.cardlist li a{
+	display: block;
+}
+.cardlist li a img{
+	width: 120px;
+	height: 150px;
+	padding:5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	position: relative;
+}  
+.cardlist li a span{
+	display: block;
+	color: #000;
+	text-align: center;
+}
+.cardlist li:hover a img{
+	top: -2px;
+}
+.cardlist li:hover a span{
+	color :#c00;
+}

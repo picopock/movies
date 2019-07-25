@@ -1,0 +1,13 @@
+<div class="table-responsive">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr><th><input type="checkbox" name="movie" /></th><th *ngFor="let column of columns; trackBy: trackByTable">{{column.title}}</th></tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data; trackBy: trackByTable">
+                <td><input type="checkbox" name="movie" /></td>
+                <td *ngFor="let column of columns; trackBy: trackByTable" title="{{item[column.field]}}">{{item[column.field]}}</td>
+            </tr>
+        </tbody>
+    </table>   
+</div>

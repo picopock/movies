@@ -1,0 +1,42 @@
+<div class='reg-container'>
+  <form class='reg' [formGroup]="myForm" (ngSubmit)="toReg(myForm)" novalidate>
+    <h2>Registration</h2>
+    <div class="form-group">
+      <label for="nickname">Nickname</label>
+      <input type="text" class="form-control" id="nickname" placeholder="nickname" formControlName="nickname">
+       <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.controls['nickname'].dirty && myForm.hasError('required','nickname'))">昵称为必填项</p> 
+       <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.controls['nickname'].dirty && myForm.hasError('minLength','nickname'))">昵称最小长度为8</p> 
+       <p>{{myForm.controls['nickname'].errors?.minLength?'昵称最小长度为8': ''}}</p>
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="email" class="form-control" id="username" placeholder="Username" formControlName="username">
+       <p style="color:red;padding: 3px 0;" [hidden]="!(myForm.controls['username'].dirty && myForm.hasError('required', 'username'))">用户名为必填项</p> 
+       <p style="color:red;padding: 3px 0;" [hidden]="!(myForm.controls['username'].dirty && myForm.hasError('minLength', 'username'))">用户名最小长度为8</p>
+    </div>
+    <div formGroupName="passwordsGroup">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
+        <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.get('passwordsGroup.password').dirty && myForm.hasError('required','passwordsGroup.password'))">密码为必填项</p> 
+        <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.get('passwordsGroup.password').dirty && myForm.hasError('minLength','passwordsGroup.password'))">密码最小长度为8</p> 
+      </div>
+      <div class="form-group">
+        <label for="pConfirm">pConfirm</label>
+        <input type="password" class="form-control" id="pConfirm" placeholder="pConfirm" formControlName="pConfirm">
+        <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.get('passwordsGroup.pConfirm').dirty && myForm.hasError('required','passwordsGroup.pConfirm'))">密码为必填项</p> 
+        <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.get('passwordsGroup.pConfirm').dirty && myForm.hasError('minLength','passwordsGroup.pConfirm'))">密码最小长度为8</p> 
+      </div>
+      <p style="color:red; padding: 3px 0;" [hidden]="!(myForm.get('passwordsGroup.pConfirm').dirty && myForm.get('passwordsGroup.password').dirty && myForm.hasError('equal','passwordsGroup') )">两次输入的密码不匹配</p>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="email" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="tel">Tel</label>
+      <input type="text" class="form-control" id="tel" placeholder="tel" formControlName="tel">
+    </div>
+    <button type="submit" class="btn btn-default" [disabled]="!myForm.dirty||myForm.dirty&&!myForm.valid">Create account</button>
+  </form>
+</div>

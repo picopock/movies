@@ -1,0 +1,13 @@
+.con-left {
+	float: left;
+    padding: 0;
+    margin-left: 15px;
+    margin-right: -15px;
+	overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .hot-list {
+    display:none;
+  }
+}

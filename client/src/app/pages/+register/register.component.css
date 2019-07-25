@@ -1,0 +1,52 @@
+div.reg-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(/assets/images/register-bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+form.reg {
+    width: 400px;
+    margin-left: auto;
+    margin-right: 300px;
+    margin-top: 60px;
+    background: #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    opacity: 0.9;
+}
+
+.reg h2 {
+    color: #FFF;
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-align: center;
+    font-size: 4em;
+    font-style: oblique;
+}
+
+input#code {
+    display: inline-block;
+    width: 70%;
+    margin-right: 15px;
+}
+
+.code span {
+    display: inline-block;
+    width: calc( 30% - 15px );
+    line-height: 30px;
+    border-radius: 5px;
+    background-color: #000;
+    text-align: center;
+    color: #fff;
+    letter-spacing: 7px;
+    text-indent: 7px;
+}
+
+.reg button {
+    width: 100%;
+}

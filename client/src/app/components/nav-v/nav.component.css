@@ -1,0 +1,42 @@
+.nav-pills {
+    position: relative;
+    height: 100%;
+}
+.nav-pills li a,
+.nav-pills li.active a,
+.nav-pills li:hover a{
+    border-radius: 0;
+    border: none;
+}
+
+.nav-pills li a {
+    width: 200px;
+}
+
+.nav-pills li a {
+    height: 70px;
+    line-height: 70px;
+    padding: 0px;
+    font-size: 24px;
+    color: #D3D3D3;
+}
+.nav-pills li{
+    margin: 0;
+    border-bottom: 1px solid #B30708;
+}
+
+.nav-pills li:last-child {
+    position: absolute;
+    bottom: 0;
+    border-bottom: none;
+}
+.nav-pills li a span {
+    padding-right: 15px;
+    padding-left: 30px;
+}
+
+.nav-pills li.active a,
+.nav-pills li:hover a{
+    background-color: #F70935;
+    color: #FFF;
+}

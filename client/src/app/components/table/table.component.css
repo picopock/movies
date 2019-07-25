@@ -1,0 +1,15 @@
+.table > tbody > tr {
+    height: 30px;
+    overflow: hidden;
+}
+.table > tbody > tr > td,
+.table > thead > tr > td,
+.table > thead > tr > th,
+.table > tbody > tr > th {
+    max-width: 25em;
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}

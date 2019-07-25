@@ -1,0 +1,21 @@
+<div class="row rotation">
+    <div class="col-sm-12">
+        <rotation></rotation>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-8 con-left">
+        <card-list [cardList]="movies"></card-list>
+        <div class="page">
+            <div class="col-sm-12">
+                <div class="pull-right">
+                    <pagination [total]="total" [limit]="limit" [page]="curPage" [getCurPageDatas]="getCurPageData"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4 con-right">
+        <app-ul [list]='hotLists' [_title]="hotTitle"></app-ul>
+        <app-ol [list]="latestLists" [_title]="latestTitle"></app-ol>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="single-member effect-1" *ngIf="userInfo">
+  <div class="member-image">
+    <!--<img bind-src="userInfo.avatarUrl" alt="Member">-->
+    <img src="/assets/images/member_140x145.jpg" alt="Member" />
+  </div>
+  <div class="member-info">
+    <h3>{{ userInfo.nickname }}</h3>
+    <h5 bind-innerHTML="userInfo.permission"></h5>
+    <h5 *ngIf="userInfo.email">{{ userInfo.email }}</h5>
+    <h5 *ngIf="userInfo.tel">{{ userInfo.tel }}</h5>
+    <div class="social-touch">
+      <button class="btn" (click)="edit_user(userInfo.id)"><span class="glyphicon glyphicon-edit"></span></button>
+      <button class="btn" (click)="del_user(userInfo.id)"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+  </div>
+</div>

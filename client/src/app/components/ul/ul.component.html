@@ -1,0 +1,11 @@
+<div class="con-right-ul">
+  <h3>{{ _title }}</h3>
+  <ul class="list-group" *ngIf="list">
+    <li class="list-group-item" *ngFor="let item of list; trackBy: trackByLists">
+      <a [routerLink]="['/detail', item.id]"
+        ><span>{{ item.name }}</span
+        ><span>{{ item.date | date: 'yyyy-MM-dd' }}</span></a
+      >
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,24 @@
+<div class="leaf-container">
+  <div class="slider">
+    <ul class="slider-main" *ngIf="rotations">
+      <li *ngFor="let item of rotations; trackBy: trackByRotation" class="cNode">
+        <div>
+          <a routerLink="/detail/{{ item.id }}"><img bind-src="'/assets/' + item.url" alt=""/></a>
+        </div>
+        <div class="slider-disc">
+          <p>
+            <a routerLink="/detail/{{ item.id }}">《{{ item.name }}》</a>
+            <span>{{ item.description }}</span>
+          </p>
+        </div>
+      </li>
+    </ul>
+    <ul class="slider-btn">
+      <li class="slider-btn-prev">prev</li>
+      <li class="slider-btn-next">next</li>
+    </ul>
+    <ul class="slider-nav" *ngIf="rotations">
+      <li *ngFor="let item of rotations; let i = index" [class.active]="i == 0">{{ i + 1 }}</li>
+    </ul>
+  </div>
+</div>

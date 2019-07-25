@@ -1,0 +1,11 @@
+<div class="con-right-ol">
+  <h3>{{ _title }}</h3>
+  <ol class="list-group" *ngIf="list.length">
+    <li class="list-group-item" *ngFor="let item of list; trackBy: trackByList; let i = index">
+      <a [routerLink]="['/detail', item.id]">
+        <span>{{ i + 1 }}.{{ item.name }}</span>
+        <span>{{ item.date | date: 'yyyy-MM-dd' }}</span>
+      </a>
+    </li>
+  </ol>
+</div>
