@@ -12,10 +12,10 @@ RUN npm i -g yarn cgr pm2 \
   && cd ./client \
   && npm i --production \
   && npm run build \
-  && rm -rf node_modules \
+  && rm -rf client \
   && cd ../server/server_koa2 \
   && yarn install --production
 
 EXPOSE 80
 
-CMD [ "pm2 start", "./bin/www" ]
+CMD [ "pm2", "start", "./bin/www" ]
