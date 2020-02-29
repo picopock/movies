@@ -12,12 +12,12 @@ ENV HOME=/usr/local/webserver/movies
 # Create app directory
 WORKDIR /usr/local/webserver/movies
 
-RUN npm i -g yarn cgr pm2 \
+RUN npm i -g cgr pm2 \
   && cgr use taobao
 
-COPY ./server/server_koa2/package.json,./server/server_koa2/yarn.lock ${HOME}/server/
+COPY ./server/server_koa2/package.json ${HOME}/server/
 
-RUN cd ${HOME}/server/ && yarn install --${NODE_ENV}
+RUN cd ${HOME}/server/ && npm install --${NODE_ENV}
 
 COPY ./client ${HOME}/client
 COPY ./server/server_koa2 ${HOME}/server
@@ -31,4 +31,4 @@ RUN cd ${HOME}/client \
 
 EXPOSE 80
 
-CMD [ "yarn", "run", ${NODE_ENV} ]
+CMD [ "npm", "run", ${NODE_ENV} ]
