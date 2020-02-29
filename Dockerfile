@@ -5,8 +5,8 @@ RUN apk add --no-cache tzdata && \
   && echo "Asia/Shanghai" > /etc/timezone \
   && apk del tzdata
 
-ARG NODE_ENV
-ENV NODE_ENV=${NODE_ENV}
+ARG env
+ENV NODE_ENV=${env}
 ENV HOME=/usr/local/webserver/movies
 
 # Create app directory
@@ -27,8 +27,7 @@ RUN cd ${HOME}/client \
   && npm run build \
   && cd .. \
   && rm -rf ./client \
-  && cd ../server \
-  && yarn install --production
+  && cd ../server
 
 EXPOSE 80
 
