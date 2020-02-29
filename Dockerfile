@@ -6,8 +6,8 @@ RUN apk add --no-cache tzdata && \
   && apk del tzdata
 
 ARG env
-ENV NODE_ENV=${env}
-ENV HOME=/usr/local/webserver/movies
+ENV NODE_ENV=${env} \ 
+  HOME=/usr/local/webserver/movies
 
 # Create app directory
 WORKDIR /usr/local/webserver/movies
@@ -15,7 +15,7 @@ WORKDIR /usr/local/webserver/movies
 ## node 镜像已经安装 yarn, 无需重复安装
 RUN npm i -g pm2 
 
-COPY ./server/server_koa2/package.json,./server/server_koa2/yarn.lock ./server
+COPY ./server/server_koa2/package.json ./server/server_koa2/yarn.lock ./server
 
 RUN cd ./server \
   && yarn install --${NODE_ENV} --registry=https://registry.npm.taobao.org
