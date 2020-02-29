@@ -12,22 +12,23 @@ ENV HOME=/usr/local/webserver/movies
 # Create app directory
 WORKDIR /usr/local/webserver/movies
 
-RUN npm i -g cgr pm2 yarn \
-  && cgr use taobao
+## node 镜像已经安装 yarn, 无需重复安装
+RUN npm i -g pm2 
 
-COPY ./server/server_koa2/package.json,./server/server_koa2/yarn.lock ./server/
+COPY ./server/server_koa2/package.json,./server/server_koa2/yarn.lock ./server
 
-RUN cd ./server/ && yarn install --${NODE_ENV}
+RUN cd ./server \
+  && yarn install --${NODE_ENV} --registry=https://registry.npm.taobao.org
 
 COPY ./client ./client
 COPY ./server/server_koa2 ./server
 
 RUN cd ./client \
-  && npm i --${NODE_ENV} \
+  && npm i --${NODE_ENV} --registry=https://registry.npm.taobao.org \ 
   && npm run build \
   && cd .. \
   && rm -rf ./client
 
 EXPOSE 80
 
-CMD [ "npm", "run", ${NODE_ENV} ]
+CMD [ "yarn", "run", ${NODE_ENV} ]
