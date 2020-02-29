@@ -5,8 +5,7 @@ RUN apk add --no-cache tzdata && \
   && echo "Asia/Shanghai" > /etc/timezone \
   && apk del tzdata
 
-ARG env
-ENV NODE_ENV=${env} \ 
+ENV NODE_ENV=production \ 
   HOME=/usr/local/webserver/movies
 
 # Create app directory
@@ -18,17 +17,17 @@ RUN npm i -g pm2
 COPY ./server/server_koa2/package.json ./server/server_koa2/yarn.lock ./server/
 
 RUN cd ./server \
-  && yarn install --production --registry=https://registry.npm.taobao.org/
+  && yarn install --${NODE_ENV} --registry=https://registry.npm.taobao.org/
 
 COPY ./client ./client
 COPY ./server/server_koa2 ./server/
 
 RUN cd ./client \
-  && npm i --production --registry=https://registry.npm.taobao.org/ \ 
+  && npm i --${NODE_ENV} --registry=https://registry.npm.taobao.org/ \ 
   && npm run build \
   && cd .. \
   && rm -rf ./client
 
 EXPOSE 80
 
-CMD [ "yarn", "run", ${NODE_ENV} ]
+CMD [ "cd","./server/", "&&", "yarn", "run", ${NODE_ENV} ]
