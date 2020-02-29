@@ -15,16 +15,16 @@ WORKDIR /usr/local/webserver/movies
 ## node 镜像已经安装 yarn, 无需重复安装
 RUN npm i -g pm2 
 
-COPY ./server/server_koa2/package.json ./server/server_koa2/yarn.lock ./server
+COPY ./server/server_koa2/package.json ./server/server_koa2/yarn.lock ./server/
 
 RUN cd ./server \
-  && yarn install --${NODE_ENV} --registry=https://registry.npm.taobao.org
+  && yarn install --${NODE_ENV} --registry=https://registry.npm.taobao.org/
 
 COPY ./client ./client
-COPY ./server/server_koa2 ./server
+COPY ./server/server_koa2 ./server/
 
 RUN cd ./client \
-  && npm i --${NODE_ENV} --registry=https://registry.npm.taobao.org \ 
+  && npm i --${NODE_ENV} --registry=https://registry.npm.taobao.org/ \ 
   && npm run build \
   && cd .. \
   && rm -rf ./client
