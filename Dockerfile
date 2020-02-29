@@ -27,7 +27,7 @@ RUN cd ${HOME}/client \
   && npm run build \
   && cd .. \
   && rm -rf ./client \
-  && cd ../server
+  && cd ./server
 
 EXPOSE 80
 
