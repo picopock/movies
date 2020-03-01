@@ -10,7 +10,7 @@ ENV NODE_ENV=production \
   REGISTRY=https://registry.npm.taobao.org/
 
 # Create app directory
-WORKDIR /usr/local/webserver/movies
+WORKDIR ${HOME}
 
 ## node 镜像已经安装 yarn, 无需重复安装
 RUN npm i -g pm2 --registry=${REGISTRY}
@@ -31,4 +31,6 @@ RUN cd ./client \
 
 EXPOSE 80
 
-CMD [ "cd","./server/", "&&", "yarn", "run", ${NODE_ENV} ]
+WORKDIR ${HOME}/server
+
+CMD [ "yarn", "run", ${NODE_ENV} ]
