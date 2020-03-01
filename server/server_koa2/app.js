@@ -64,7 +64,7 @@ app.use(async (ctx, next) => {
 });
 
 // 伺服静态资源
-app.use(static(__dirname + './dist'));
+app.use(static(__dirname + '../dist'));
 // 模板渲染
 app.use(
   koaNunjucks({
