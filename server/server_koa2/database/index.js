@@ -1,11 +1,16 @@
 const Sequelize = require('sequelize');
-const config = require('./config');
+const _config = require('./config');
+
 
 const _Movie = require('../models/Movie');
 const _Link = require('../models/Link');
 const _User = require('../models/User');
 
 console.log('init sequelize...');
+
+const env = (process.env.NODE_ENV ||'development').trim()
+
+const config = _config[env]
 
 let sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,

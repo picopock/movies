@@ -33,4 +33,4 @@ EXPOSE 80
 
 WORKDIR ${HOME}/server
 
-CMD [ "yarn", "run", ${NODE_ENV} ]
+CMD [ "yarn", "run", "prod"]
