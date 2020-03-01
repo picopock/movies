@@ -1,6 +1,6 @@
 apps:
   - name: 'movie-server'
-    script: ./bin/www
+    script: ./server/bin/www
     instances: max
     exec_mode: cluster
     max_memory_restart: 500M
