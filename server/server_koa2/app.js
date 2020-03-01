@@ -12,6 +12,8 @@ const jwtConfig = require('./config/jwt_config');
 const router = require('./routers/route');
 const koaNunjucks = require('koa-nunjucks-2');
 
+const staticDir = path.join(__dirname, '../dist');
+
 // error handler
 onerror(app);
 
@@ -64,7 +66,13 @@ app.use(async (ctx, next) => {
 });
 
 // 伺服静态资源
-app.use(static(__dirname + '../dist'));
+app.use(
+  static(staticDir, {
+    maxAge: 24 * 60 * 60 * 1000, // 1d
+    gzip: true
+  })
+);
+
 // 模板渲染
 app.use(
   koaNunjucks({
@@ -80,14 +88,14 @@ app.use(
 app.use(router.routes());
 // .use(router.allowedMethods());
 
-// 404 重定向到/
-// app.use(async (ctx, next) => {
-// 	console.log(ctx.originalUrl);
-// 	if(ctx.status === 404 && ctx.method === 'GET' && !/^(?:\/api).*/.test(ctx.originalUrl) ) {
-// 		ctx.redirect('/');
-// 	}
-// 	next();
-// })
+// 404 返回 index.html
+app.use(async (ctx, next) => {
+  if (ctx.status === 404 && ctx.method === 'GET' && !/^(?:\/api).*/.test(ctx.originalUrl)) {
+    await ctx.render('index');
+  } else {
+    next();
+  }
+});
 
 // error-handling
 app.on('error', (err, ctx) => {
