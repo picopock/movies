@@ -31,6 +31,4 @@ RUN cd ./client \
 
 EXPOSE 80
 
-WORKDIR ${HOME}/server
-
-CMD [ "yarn", "run", "prod"]
+CMD [ "pm2-runtime", "./server/pm2.config.yml", "--only", "movie-server", "--env", "production"]
