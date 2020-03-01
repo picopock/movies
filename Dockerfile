@@ -28,7 +28,7 @@ RUN cd ./client \
   && npm run build -- --prod\
   && cd .. \
   && rm -rf ./client \
-  && mv ./dist/index.html ./server/views/
+  && mv ./dist/index.html ./server/views/index.html
 
 EXPOSE 80
 
