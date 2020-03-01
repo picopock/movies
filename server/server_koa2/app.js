@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const path = require('path');
 const app = new Koa();
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser');
@@ -43,8 +44,6 @@ app.use(
   })
 );
 
-
-
 // logger
 app.use(async (ctx, next) => {
   // 响应开始时间
@@ -67,13 +66,15 @@ app.use(async (ctx, next) => {
 // 伺服静态资源
 app.use(static(__dirname + './dist'));
 // 模板渲染
-app.use(koaNunjucks({
-  ext: 'html',
-  path: path.join(__dirname, 'views'),
-  nunjucksConfig: {
-    trimBlocks: true
-  }
-}));
+app.use(
+  koaNunjucks({
+    ext: 'html',
+    path: path.join(__dirname, 'views'),
+    nunjucksConfig: {
+      trimBlocks: true
+    }
+  })
+);
 
 // 路由入口
 app.use(router.routes());
