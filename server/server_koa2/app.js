@@ -9,6 +9,8 @@ const cors = require('@koa/cors');
 const logUtil = require('./utils/log_util');
 const jwtConfig = require('./config/jwt_config');
 const router = require('./routers/route');
+const koaNunjucks = require('koa-nunjucks-2');
+
 // error handler
 onerror(app);
 
@@ -41,7 +43,7 @@ app.use(
   })
 );
 
-app.use(static(__dirname + '/public'));
+
 
 // logger
 app.use(async (ctx, next) => {
@@ -61,6 +63,17 @@ app.use(async (ctx, next) => {
     logUtil.logError(ctx, error, ms);
   }
 });
+
+// 伺服静态资源
+app.use(static(__dirname + './dist'));
+// 模板渲染
+app.use(koaNunjucks({
+  ext: 'html',
+  path: path.join(__dirname, 'views'),
+  nunjucksConfig: {
+    trimBlocks: true
+  }
+}));
 
 // 路由入口
 app.use(router.routes());

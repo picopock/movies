@@ -5,15 +5,15 @@ router.get('/', async (ctx, next) => {
     'cid',
     'hello world',
     {
-      domain: 'localhost',
+      domain: ctx.hostname,
       path: '/',
       maxAge: 10*60*1000,
       expires: new Date('2017-9-21'),
-      httpOnly: false,
+      httpOnly: true,
       overwrite: false
     }
   )
-  ctx.body = 'Hello Koa2!!';
+  await ctx.render('index')
 });
 
 module.exports = router;

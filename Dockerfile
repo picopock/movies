@@ -25,9 +25,10 @@ COPY ./server/server_koa2 ./server/
 
 RUN cd ./client \
   && npm i --${NODE_ENV} --registry=${REGISTRY} \ 
-  && npm run build \
+  && npm run build -- --prod\
   && cd .. \
-  && rm -rf ./client
+  && rm -rf ./client \
+  && mv ./dist/index.html ./server/views/index.html
 
 EXPOSE 80
 
