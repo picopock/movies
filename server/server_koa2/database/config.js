@@ -1,6 +1,6 @@
 module.exports = {
   production: {
-    host: 'messica.cn',
+    host: '127.0.0.1',
     port: 3306,
     username: 'movie',
     password: 'movie',
@@ -27,4 +27,4 @@ module.exports = {
     },
     timezone: '+00:00'
   }
-}
+};
