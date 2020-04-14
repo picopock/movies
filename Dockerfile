@@ -46,4 +46,4 @@ COPY --from=assetsBuilder ${HOME}/dist/ .
 
 EXPOSE 80
 
-CMD [ "pm2-runtime", "./server/pm2.config.yml", "--only", "movie-server", "--env", ${NODE_ENV}]
+CMD [ "pm2-runtime", "./server/pm2.config.yml", "--only", "movie-server", "--env", "production"]
