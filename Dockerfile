@@ -18,7 +18,7 @@ RUN cd ./client \
   && npm run build -- --prod \
   && mv ./src/favicon.ico ../dist/ \
   && mkdir -p ../dist/assets/ \
-  && mv ./src/assets/ ../dist/
+  && mv ./src/assets/ ../dist
 
 # build server image
 FROM node:12-alpine
