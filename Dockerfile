@@ -1,3 +1,23 @@
+# build client assets
+FROM node:12-alpine as assetsBuilder
+
+ENV NODE_ENV=production \ 
+  HOME=/usr/local/webserver/movies \
+  REGISTRY=https://registry.npm.taobao.org/
+
+WORKDIR ${HOME}
+
+COPY ./client/package.json ./client/package-lock.json ./client/
+
+RUN cd ./client \
+  && npm ci --${NODE_ENV} --registry=${REGISTRY}
+
+COPY ./client ./client
+
+RUN cd ./client \
+  && npm run build -- --prod
+
+# build server image
 FROM node:12-alpine
 
 RUN apk add --no-cache tzdata && \
@@ -12,24 +32,18 @@ ENV NODE_ENV=production \
 # Create app directory
 WORKDIR ${HOME}
 
-## node 镜像已经安装 yarn, 无需重复安装
-RUN npm i -g pm2 --registry=${REGISTRY}
-
 COPY ./server/server_koa2/package.json ./server/server_koa2/yarn.lock ./server/
 
-RUN cd ./server \
+# node 镜像已经安装 yarn, 无需重复安装
+RUN npm ci -g pm2 --registry=${REGISTRY} \
+  && cd ./server \
   && yarn install --${NODE_ENV} --registry=${REGISTRY}
 
-COPY ./client ./client
 COPY ./server/server_koa2 ./server/
 
-RUN cd ./client \
-  && npm i --${NODE_ENV} --registry=${REGISTRY} \ 
-  && npm run build -- --prod\
-  && cd .. \
-  && rm -rf ./client \
-  && mv ./dist/index.html ./server/views/index.html
+COPY --from=assetsBuilder ${HOME}/dist/index.html ./server/views/index.html
+COPY --from=assetsBuilder ${HOME}/dist/ .
 
 EXPOSE 80
 
-CMD [ "pm2-runtime", "./server/pm2.config.yml", "--only", "movie-server", "--env", "production"]
+CMD [ "pm2-runtime", "./server/pm2.config.yml", "--only", "movie-server", "--env", NODE_ENV]
