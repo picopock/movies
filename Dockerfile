@@ -35,7 +35,7 @@ WORKDIR ${HOME}
 COPY ./server/server_koa2/package.json ./server/server_koa2/yarn.lock ./server/
 
 # node 镜像已经安装 yarn, 无需重复安装
-RUN npm ci -g pm2 --registry=${REGISTRY} \
+RUN yarn global add pm2 --registry=${REGISTRY} \
   && cd ./server \
   && yarn install --${NODE_ENV} --registry=${REGISTRY}
 
