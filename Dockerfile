@@ -15,7 +15,9 @@ RUN cd ./client \
 COPY ./client ./client
 
 RUN cd ./client \
-  && npm run build -- --prod
+  && npm run build -- --prod \
+  && mv ./src/favicon.ico ../dist/ \
+  && mv ./src/assets/ ../dist/
 
 # build server image
 FROM node:12-alpine
