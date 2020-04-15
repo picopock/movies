@@ -15,10 +15,7 @@ RUN cd ./client \
 COPY ./client ./client
 
 RUN cd ./client \
-  && npm run build -- --prod \
-  && mv ./src/favicon.ico ../dist/ \
-  && mkdir -p ../dist/assets/ \
-  && mv ./src/assets/ ../dist
+  && npm run build -- --prod
 
 # build server image
 FROM node:12-alpine
@@ -45,7 +42,7 @@ RUN yarn global add pm2 --registry=${REGISTRY} \
 COPY ./server/server_koa2 ./server/
 
 COPY --from=assetsBuilder ${HOME}/dist/index.html ./server/views/index.html
-COPY --from=assetsBuilder ${HOME}/dist/ .
+COPY --from=assetsBuilder ${HOME}/dist/ ./dist/
 
 EXPOSE 80
 
