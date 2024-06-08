@@ -1,5 +1,10 @@
-export default (sequelize, DataTypes) => {
-    return sequelize.define('user', {
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "../database/init.mjs";
+
+export class User extends Model { }
+
+User.init(
+    {
         id: {
             type: DataTypes.BIGINT(11),
             field: 'id',
@@ -43,7 +48,9 @@ export default (sequelize, DataTypes) => {
             field: 'nickname',
             allowNull: true
         }
-    }, {
+    },
+    {
+        sequelize,
         freezeTableName: true,
         tableName: 'users',
         underscored: true,
@@ -55,5 +62,5 @@ export default (sequelize, DataTypes) => {
         // And deletedAt to be called destroyTime (remember to enable paranoid for this to work)
         deletedAt: 'destroy_time',
         paranoid: true
-    })
-}
+    }
+);

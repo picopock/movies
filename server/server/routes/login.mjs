@@ -1,6 +1,7 @@
-import express from 'express';
-import {User} from '../database/index';
-let router = express.Router();
+import { Router } from 'express';
+import { User } from '../models/index.mjs'
+
+const router = Router();
 
 let findUser = (username, password) => {
     return User.findOne({
@@ -19,24 +20,24 @@ router.post('/login', (req, res, next) => {
             user = _user;
         });
 
-    if(user !== null) {
+    if (user !== null) {
         req.session.regenerate((err) => {
-            if(err) {
-                return res.json({ret_code: 2, ret_msg: err || "Login failed!"});
+            if (err) {
+                return res.json({ ret_code: 2, ret_msg: err || "Login failed!" });
             }
             req.session.loginUser = user.username;
-            res.json({ret_code: 0, ret_msg: '登录成功'});
+            res.json({ ret_code: 0, ret_msg: '登录成功' });
         });
     } else {
-        res.json({ret_code: 1, ret_msg: '账号或密码错误'})
+        res.json({ ret_code: 1, ret_msg: '账号或密码错误' })
     }
 });
 
 router.get('/logOut', (req, res, next) => {
     req.session.destroy((err) => {
-        if(err) {
-            res.json({ret_code: 2, ret_msg: '退出登陆失败'});
-            return ;
+        if (err) {
+            res.json({ ret_code: 2, ret_msg: '退出登陆失败' });
+            return;
         }
 
         res.clearCookie(req.session.loginUser);
@@ -46,14 +47,14 @@ router.get('/logOut', (req, res, next) => {
 
 router.get('/isLogin', (req, res, next) => {
     let user;
-     findUser(req.body.username, req.body.password)
+    findUser(req.body.username, req.body.password)
         .then(_user => {
             user = _user;
         });
-    if(user !== null) {
-        res.json({ret_code: 0, ret_msg: '已登录用户'})
+    if (user !== null) {
+        res.json({ ret_code: 0, ret_msg: '已登录用户' })
     } else {
-        res.json({ret_code: 2, ret_msg: '用户未登录'})
+        res.json({ ret_code: 2, ret_msg: '用户未登录' })
     }
 });
 

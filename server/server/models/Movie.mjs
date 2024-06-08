@@ -1,5 +1,9 @@
-export default (sequelize, DataTypes) => {
-    return sequelize.define('movie', {
+import { Model, DataTypes } from "sequelize";
+import { sequelize } from "../database/init.mjs";
+
+export class Movie extends Model { }
+Movie.init(
+    {
         id: {
             type: DataTypes.BIGINT(11),
             field: 'id',
@@ -75,19 +79,21 @@ export default (sequelize, DataTypes) => {
             //         msg: 'img url Must be url'
             //     }
             // }
-        }
-    }, {
+        },
+    },
+    {
+        sequelize,
         timestamps: false,
         freezeTableName: true,
         tableName: 'movies',
         underscored: true,
         validate: {
-            bothResolutionOrNull: function() {
-                if((this.resolutionW === '') !== (this.resolutionH === '')) {
+            bothResolutionOrNull: function () {
+                if ((this.resolutionW === '') !== (this.resolutionH === '')) {
                     throw new Error('Require either both resolutionW and resolutionH or neither');
                 }
             }
         },
         comment: "Movie Model"
-    });
-}
+    }
+);

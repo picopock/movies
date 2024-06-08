@@ -1,8 +1,7 @@
-import express from 'express';
-// import home from './home';
-import movie from './movie';
-import user from './user';
-import login from './login';
+// import home from './home.mjs';
+import movie from './movie.mjs';
+import user from './user.mjs';
+import login from './login.mjs';
 
 export default (app) => {
     app.disable('x-powered-by');
@@ -32,10 +31,10 @@ export default (app) => {
     app.use('/api/user', user);
 
     app.use((req, res) => {
-        res.status(404).json({status: 404, message: 'Not Found'});
+        res.status(404).json({ status: 404, message: 'Not Found' });
     });
 
     app.use((err, req, res, next) => {
-        res.status(500).json({status: 500, message: err.message});
+        res.status(500).json({ status: 500, message: err.message });
     })
 }

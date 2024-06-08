@@ -1,5 +1,5 @@
-export default {
-    host: 'localhost',
+const config = {
+    host: '10.0.0.17',
     port: 3306,
     username: 'movie',
     password: 'movie',
@@ -11,4 +11,6 @@ export default {
         idle: 10000
     },
     timezone: '+00:00'
-}
+};
+
+export default config;
