@@ -22,7 +22,7 @@ export class FooterComponent {
     { id: 8, url: 'http://www.1905.com/', name: '1905电影网' },
     { id: 9, url: 'http://dianying.2345.com/', name: '2345影视' }
   ];
-  trackBySiteLinks(link: SiteLink) {
+  trackBySiteLinks(idx: number, link: SiteLink) {
     return link.id;
   }
 }

@@ -8,7 +8,7 @@ export class HomeService {
   // private headers = new Headers({'co'})
   private url = '/api/movie';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   public getLatestMovies(limit: number): Promise<any> {
     let url = `${this.url}/latest?limit=${limit}`;
@@ -32,7 +32,7 @@ export class HomeService {
     );
   }
 
-  public getPageMovies(curPage: number, limit?: number): Promise<any> {
+  public getPageMovies(curPage: number, limit: number = 10): Promise<any> {
     let url = `${this.url}/page?limit=${limit}&offset=${(curPage - 1) * limit}`;
     return (
       this.http

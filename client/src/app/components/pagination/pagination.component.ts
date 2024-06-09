@@ -16,15 +16,15 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaginationComponent implements OnInit, OnChanges {
-  @Input() total: number;
-  @Input() limit: number;
-  @Input() page: number;
-  @Input() getCurPageDatas: Function;
-  public totalPage: number;
+  @Input() total!: number;
+  @Input() limit!: number;
+  @Input() page!: number;
+  @Input() getCurPageDatas!: Function;
+  public totalPage: number = 0;
   public goToPage: number = 1;
-  public showPage: number[];
+  public showPage: number[] = [];
 
-  constructor(private ref: ChangeDetectorRef) {}
+  constructor(private ref: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.getPageData();

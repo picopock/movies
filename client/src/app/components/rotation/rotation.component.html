@@ -3,7 +3,7 @@
     <ul class="slider-main" *ngIf="rotations">
       <li *ngFor="let item of rotations; trackBy: trackByRotation" class="cNode">
         <div>
-          <a routerLink="/detail/{{ item.id }}"><img bind-src="'/assets/' + item.url" alt=""/></a>
+          <a routerLink="/detail/{{ item.id }}"><img bind-src="'/' + item.url" alt="" /></a>
         </div>
         <div class="slider-disc">
           <p>

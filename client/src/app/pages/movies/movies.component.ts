@@ -19,7 +19,7 @@ export class MoviesComponent implements OnInit {
     this.cancelEdit = this.cancelEdit.bind(this);
   }
 
-  operateMode: string;
+  operateMode: string = '';
 
   ngOnInit(): void {
     this.movieService.getMovies().then(({ rows, count }) => {
@@ -78,7 +78,7 @@ export class MoviesComponent implements OnInit {
   //             duration: 109,
   //             fileSize: 2.80,
   //             description: `Getting married is crazy! I only want to be in relationships!" The life story of a woman who doesn't want to settle for one man. Her mom nags at her to get married, her superior grills her to bring results and her boyfriend turns out to be married. Soo-kyeong comforts herself with some spicy food. One lonely birthday, she ends up having sex with the chef of the spicy food restaurant. They fit well mentally and physically so they get closer but Soo-kyeong rejects the chef's marriage proposal. The chef gets married with someone else and asks her, "I got married with someone else like you said. Now will you have a relationship with me?`,
-  //             imgUrl: 'src/assets/images/the-surprise.jpg',
+  //             imgUrl: 'src/images/the-surprise.jpg',
   //             links: [
   //                 {id: 0, title: 'ftp://www:piaohua.com@dy126.piaohua.com:36952/临时工BD1280高清中英双字.rmvb', url: 'thunder://QUFmdHA6Ly93d3c6cGlhb2h1YS5jb21AZHkxMjYucGlhb2h1YS5jb206MzY5NTIvJUU5JUEzJTk4JUU4JThBJUIxJUU3JTk0JUI1JUU1JUJEJUIxcGlhb2h1YS5jb20lRTQlQjglQjQlRTYlOTclQjYlRTUlQjclQTVCRDEyODAlRTklQUIlOTglRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcucm12Ylpa'},
   //                 {id: 1, title: 'ftp://www:piaohua.com@dy126.piaohua.com:36952/临时工BD1280高清中英双字.rmvb', url: 'thunder://QUFmdHA6Ly93d3c6cGlhb2h1YS5jb21AZHkxMjYucGlhb2h1YS5jb206MzY5NTIvJUU5JUEzJTk4JUU4JThBJUIxJUU3JTk0JUI1JUU1JUJEJUIxcGlhb2h1YS5jb20lRTQlQjglQjQlRTYlOTclQjYlRTUlQjclQTVCRDEyODAlRTklQUIlOTglRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcucm12Ylpa'},
@@ -89,7 +89,7 @@ export class MoviesComponent implements OnInit {
   //     return data;
   // }
   // private data: Array<any> = this.movies(15);
-  data: Array<any>;
+  data: Array<any> = [];
   classifyList: Nav[] = navList;
 
   getClassifyTitle(): string {

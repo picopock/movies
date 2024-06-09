@@ -4,7 +4,7 @@ div.login-container {
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(/assets/images/login-bg.png);
+    background-image: url(/images/login-bg.png);
     background-size: cover;
     background-repeat: no-repeat;
 }

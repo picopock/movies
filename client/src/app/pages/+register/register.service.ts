@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { setSessionStorage } from '../../../utils/cache';
-let md5 = require('blueimp-md5');
-
-// import 'rxjs/add/operator/toPromise';
+import { omit } from 'lodash-es'
 
 interface Res {
   code: number;
@@ -15,21 +13,18 @@ interface Res {
 
 @Injectable()
 export class RegistryService {
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
-  public regUser(obj: { [propName: string]: any }): Promise<any> {
-    let body = Object.assign({}, obj, { password: obj.passwordsGroup.password });
-    delete body.passwordsGroup;
+  public regUser(obj: any) {
+    let body = { ...omit(obj, ['passwordsGroup']), password: obj.passwordsGroup.password }
     return (
       this.http
-        .post('/api/register', body, {
+        .post<Res>('/api/register', body, {
           headers: new HttpHeaders({
             'Content-Type': 'application/json'
           })
         })
-        .toPromise()
-        // .then(response => response.json())
-        .then((res: Res) => {
+        .subscribe(res => {
           if (res.code == 1) {
             setSessionStorage('token', res.token);
             setSessionStorage('user', JSON.stringify(res.user));
@@ -39,7 +34,7 @@ export class RegistryService {
           }
           return null;
         })
-        .catch(this.handleError)
+      // .catch(this.handleError)
     );
   }
 

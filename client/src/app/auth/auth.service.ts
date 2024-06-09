@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -12,21 +12,19 @@ export class AuthService {
   isLoggedIn: boolean = false;
 
   // store the URL so we can redirect after logging in
-  redirectUrl: string;
+  redirectUrl?: string;
 
-  constructor(private http: HttpClient, private router: Router, private _location: Location) {}
+  constructor(private http: HttpClient, private router: Router, private _location: Location) { }
 
-  login(): Promise<any> {
+  login() {
     return this.http
-      .get('/api/isLogin')
-      .toPromise()
-      .then((res: Res) => {
+      .get<{ ret_code: number, ret_msg: string }>('/api/isLogin')
+      .subscribe(res => {
         if (res.ret_code == 0) {
           this.isLoggedIn = true;
         }
         this.redirect();
       })
-      .catch(this.handleError);
   }
 
   redirect() {

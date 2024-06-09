@@ -45,9 +45,9 @@ router.get('/logOut', (req, res, next) => {
     });
 });
 
-router.get('/isLogin', (req, res, next) => {
+router.get('/isLogin', async (req, res, next) => {
     let user;
-    findUser(req.body.username, req.body.password)
+    await findUser(req.body.username, req.body.password)
         .then(_user => {
             user = _user;
         });

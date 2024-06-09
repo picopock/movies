@@ -15,8 +15,8 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   isShowPopup: boolean = false;
-  operateMode: string;
-  userPermissions: Array<any>;
+  operateMode?: string;
+  userPermissions?: Array<any>;
   userList: any;
   repeatPw: string = '';
 
@@ -48,7 +48,7 @@ export class UserComponent implements OnInit, OnDestroy {
   //             email: 'XXXXXX@163.com',
   //             tel: '133-XXXX-000'+(i+1),
   //             file: null,
-  //             avatarUrl: '/assets/images/member_140x145.jpg'
+  //             avatarUrl: '/images/member_140x145.jpg'
   //         };
   //         arr.push(obj);
   //     }

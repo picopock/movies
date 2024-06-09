@@ -19,4 +19,4 @@ import { AuthService } from '../../auth/auth.service';
     }
   ]
 })
-export class LoginModule {}
+export class LoginModule { }

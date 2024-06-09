@@ -9,11 +9,9 @@ import {
   AfterViewChecked,
   OnDestroy
 } from '@angular/core';
+import Slider, { SliderOptions } from './slider';
 
-declare var $: any;
-let Slider: any = require('../../../assets/js/slider.js');
-
-export class Rotation {
+export interface Rotation {
   id: number;
   url: string;
   name: string;
@@ -26,7 +24,7 @@ export class Rotation {
   styleUrls: ['./rotation.component.css']
 })
 export class RotationComponent implements AfterViewInit {
-  slider: any;
+  slider?: typeof Slider;
 
   rotations: Rotation[] = [
     {
@@ -59,7 +57,8 @@ export class RotationComponent implements AfterViewInit {
     return item.id;
   }
 
-  ngAfterViewInit() {
+  async ngAfterViewInit() {
+    //@ts-ignore
     this.slider = new Slider({
       //开始创建效果
       pNode: '.slider-main', //容器的选择器 必填
@@ -68,6 +67,6 @@ export class RotationComponent implements AfterViewInit {
       navParent: '.slider-nav', //高亮导航节点
       speed: 3000, //速度 默认3000 可不填写
       autoPlay: true //是否自动播放 默认true 可不填写
-    });
+    } as SliderOptions);
   }
 }

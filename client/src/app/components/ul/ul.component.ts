@@ -11,10 +11,10 @@ interface List {
   templateUrl: './ul.component.html'
 })
 export class UlComponent {
-  @Input() list: Array<List>;
-  @Input() _title: string;
+  @Input() list!: Array<List>;
+  @Input() _title!: string;
 
-  trackByLists(item: List) {
+  trackByLists(index: number, item: List) {
     return item.id;
   }
 }

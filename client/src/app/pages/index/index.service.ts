@@ -4,7 +4,7 @@ import { User } from './index.interface';
 
 @Injectable()
 export class IndexService {
-  private user: User = null;
+  private user: User | null = null;
   constructor() {
     this.getUserInfo();
   }
@@ -12,7 +12,7 @@ export class IndexService {
   getUserInfo() {
     let user = getSessionStorage('user');
     try {
-      this.user = JSON.parse(user);
+      this.user = user == null ? null : JSON.parse(user);
     } catch (err) {
       console.log(err);
     }
@@ -27,7 +27,7 @@ export class IndexService {
     }
   }
 
-  getCurUser(): User {
+  getCurUser(): User | null {
     this.getUserInfo();
     return this.user;
   }

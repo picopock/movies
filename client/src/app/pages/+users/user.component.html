@@ -2,12 +2,8 @@
   <button class="btn btn-add" (click)="addUser()"><span class="glyphicon glyphicon-plus"></span></button>
   <div class="row">
     <div class="col-sm-12">
-      <app-card-2
-        *ngFor="let userInfo of userList; trackBy: trackByUserList"
-        [userInfo]="userInfo"
-        [edit]="editUser"
-        [del]="delUser"
-      ></app-card-2>
+      <app-card-2 *ngFor="let userInfo of userList; trackBy: trackByUserList" [userInfo]="userInfo" [edit]="editUser"
+        [del]="delUser"></app-card-2>
     </div>
   </div>
   <div class="md-modal md-effect-19" id="modal-19" [class.mdShow]="isShowPopup">
@@ -19,97 +15,58 @@
             <div class="form-group">
               <label for="nickname" class="col-sm-4 control-label">昵称：</label>
               <div class="col-sm-8">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="nickname"
-                  placeholder="nickname"
-                  name="nickname"
-                  [(ngModel)]="curUserData.nickname"
-                />
+                <input type="text" class="form-control" id="nickname" placeholder="nickname" name="nickname"
+                  [(ngModel)]="curUserData['nickname']" />
               </div>
             </div>
             <div class="form-group">
               <label for="username" class="col-sm-4 control-label">用户名：</label>
               <div class="col-sm-8">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="username"
-                  placeholder="username"
-                  name="username"
-                  [(ngModel)]="curUserData.username"
-                />
+                <input type="text" class="form-control" id="username" placeholder="username" name="username"
+                  [(ngModel)]="curUserData['username']" />
               </div>
             </div>
             <div class="form-group">
               <label for="permission" class="col-sm-4 control-label">权限：</label>
               <div class="col-sm-8">
-                <select class="form-control" id="permission" [(ngModel)]="curUserData.permission" name="permission">
-                  <option
-                    *ngFor="let permission of userPermissions; trackBy: trackByPermissionList"
-                    [value]="permission"
-                    >{{ permission }}</option
-                  >
+                <select class="form-control" id="permission" [(ngModel)]="curUserData['permission']" name="permission">
+                  <option *ngFor="let permission of userPermissions; trackBy: trackByPermissionList"
+                    [value]="permission">{{ permission }}</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
               <label for="password" class="col-sm-4 control-label">新密码：</label>
               <div class="col-sm-8">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="New Password"
-                  name="password"
-                  [(ngModel)]="curUserData.password"
-                />
+                <input type="password" class="form-control" id="password" placeholder="New Password" name="password"
+                  [(ngModel)]="curUserData['password']" />
               </div>
             </div>
             <div class="form-group">
               <label for="repeatPassword" class="col-sm-4 control-label">重复密码：</label>
               <div class="col-sm-8">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="repeatPassword"
-                  placeholder="Repeat Password"
-                  name="repeatPassword"
-                  [(ngModel)]="repeatPw"
-                />
+                <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat Password"
+                  name="repeatPassword" [(ngModel)]="repeatPw" />
               </div>
             </div>
             <div class="form-group">
               <label for="email" class="col-sm-4 control-label">Email：</label>
               <div class="col-sm-8">
-                <input
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="Email"
-                  name="email"
-                  [(ngModel)]="curUserData.email"
-                />
+                <input type="email" class="form-control" id="email" placeholder="Email" name="email"
+                  [(ngModel)]="curUserData['email']" />
               </div>
             </div>
             <div class="form-group">
               <label for="tel" class="col-sm-4 control-label">Tel：</label>
               <div class="col-sm-8">
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="tel"
-                  placeholder="Telphone"
-                  name="tel"
-                  [(ngModel)]="curUserData.tel"
-                />
+                <input type="tel" class="form-control" id="tel" placeholder="Telphone" name="tel"
+                  [(ngModel)]="curUserData['tel']" />
               </div>
             </div>
           </form>
         </div>
         <div class="col-sm-4 avator">
-          <img bind-src="curUserData.avatarUrl || '/assets/images/member_140x145.jpg'" alt="" />
+          <img bind-src="curUserData['avatarUrl'] || '/images/member_140x145.jpg'" alt="" />
           <div class="btn-toolbar" role="toolbar" aria-label="...">
             <div class="file-body" role="group" aria-label="...">
               <label for="file-upload" className="file-upload">··· ···</label>

@@ -1,21 +1,21 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 interface List {
-    id: number;
-    name: string;
-    date: Date;
+  id: number;
+  name: string;
+  date: Date;
 }
 @Component({
-    selector: 'app-ol',
-    styleUrls: ['./ol.component.css'],
-    templateUrl: './ol.component.html'
+  selector: 'app-ol',
+  styleUrls: ['./ol.component.css'],
+  templateUrl: './ol.component.html'
 })
 
 export class OlComponent {
-    @Input() list: Array<List>;
-    @Input() _title: string;
+  @Input() list!: Array<List>;
+  @Input() _title!: string;
 
-    trackByList(item: List) {
-        return item.id;
-    }
+  trackByList(index: number, item: List) {
+    return item.id;
+  }
 }

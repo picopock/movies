@@ -34,8 +34,8 @@ export interface ShortMovie {
   templateUrl: './detail.component.html'
 })
 export class DetailComponent {
-  curId: number;
-  movie: Movie = null /*{
+  curId?: number;
+  movie: Movie | null = null /*{
         name: '临时雇员/临时工',
         aliasName: 'Sex: A Relationship and Not Marriage',
         classify: '剧情',
@@ -48,7 +48,7 @@ export class DetailComponent {
         duration: 109,
         fileSize: 2.80,
         description: `Getting married is crazy! I only want to be in relationships!" The life story of a woman who doesn't want to settle for one man. Her mom nags at her to get married, her superior grills her to bring results and her boyfriend turns out to be married. Soo-kyeong comforts herself with some spicy food. One lonely birthday, she ends up having sex with the chef of the spicy food restaurant. They fit well mentally and physically so they get closer but Soo-kyeong rejects the chef's marriage proposal. The chef gets married with someone else and asks her, "I got married with someone else like you said. Now will you have a relationship with me?`,
-        imgUrl: '/assets/images/the-surprise.jpg',
+        imgUrl: '/images/the-surprise.jpg',
         links: [
             {id: 0, title: 'ftp://www:piaohua.com@dy126.piaohua.com:36952/临时工BD1280高清中英双字.rmvb', url: 'thunder://QUFmdHA6Ly93d3c6cGlhb2h1YS5jb21AZHkxMjYucGlhb2h1YS5jb206MzY5NTIvJUU5JUEzJTk4JUU4JThBJUIxJUU3JTk0JUI1JUU1JUJEJUIxcGlhb2h1YS5jb20lRTQlQjglQjQlRTYlOTclQjYlRTUlQjclQTVCRDEyODAlRTklQUIlOTglRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcucm12Ylpa'},
             {id: 1, title: 'ftp://www:piaohua.com@dy126.piaohua.com:36952/临时工BD1280高清中英双字.rmvb', url: 'thunder://QUFmdHA6Ly93d3c6cGlhb2h1YS5jb21AZHkxMjYucGlhb2h1YS5jb206MzY5NTIvJUU5JUEzJTk4JUU4JThBJUIxJUU3JTk0JUI1JUU1JUJEJUIxcGlhb2h1YS5jb20lRTQlQjglQjQlRTYlOTclQjYlRTUlQjclQTVCRDEyODAlRTklQUIlOTglRTYlQjglODUlRTQlQjglQUQlRTglOEIlQjElRTUlOEYlOEMlRTUlQUQlOTcucm12Ylpa'},
@@ -101,14 +101,14 @@ export class DetailComponent {
   }
 
   getClassifyTitle(): string {
-    if (!this.movie.classify) return '';
-    const curClassify = this.classifyList.find(classify => classify.classify === this.movie.classify);
+    if (!this.movie?.classify) return '';
+    const curClassify = this.classifyList.find(classify => classify.classify === this.movie!.classify);
     return curClassify ? curClassify.title : '';
   }
 
   getCurMovie() {
     this.detailService
-      .getCurMovie(this.curId)
+      .getCurMovie(this.curId!)
       .then((movie: any) => {
         movie.resolution = movie.resolutionW + '*' + movie.resolutionH;
         movie.publishDate = new Date(movie.publishDate);

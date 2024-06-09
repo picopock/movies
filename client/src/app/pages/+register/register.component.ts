@@ -39,4 +39,8 @@ export class RegisterComponent {
   toReg(myForm: FormGroup): void {
     this.regService.regUser(myForm.value);
   }
+
+  traString(val: any): string {
+    return JSON.stringify(val);
+  }
 }

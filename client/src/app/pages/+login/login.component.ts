@@ -3,14 +3,14 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 
 import { LoginService } from './login.service';
 
-function usernameValidator(control: FormControl): { [s: string]: boolean } {
+function usernameValidator(control: FormControl): { invalidUsername: boolean } | void {
   if (!/^[_a-zA-Z].*/.test(control.value)) {
     return { invalidUsername: true };
   }
 }
 
 class VerificationCode {
-  code: string;
+  code?: string;
   codeArray: Array<string> = new Array(
     '1',
     '2',
@@ -76,7 +76,7 @@ class VerificationCode {
     'Z'
   );
 
-  constructor() {}
+  constructor() { }
 
   geneCode() {
     this.code = '';
@@ -104,14 +104,14 @@ export class LoginComponent {
   toLogin(form: FormGroup) {
     let obj = Object.assign({}, form.value);
     delete obj.code;
-    this.loginService.Login(obj).catch(err => console.log(err));
+    this.loginService.Login(obj)/* .catch(err => console.log(err)) */;
   }
 
   myForm: FormGroup;
 
   constructor(fb: FormBuilder, private loginService: LoginService) {
     this.verificationCode = new VerificationCode();
-    this.codePic = this.verificationCode.updateCode();
+    this.codePic = this.verificationCode.updateCode() || '';
     this.myForm = fb.group({
       username: ['', [Validators.required, usernameValidator, Validators.minLength(8)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -120,6 +120,6 @@ export class LoginComponent {
   }
 
   updateCode() {
-    this.codePic = this.verificationCode.updateCode();
+    this.codePic = this.verificationCode.updateCode() || '';
   }
 }

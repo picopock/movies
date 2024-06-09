@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-export class Nav {
+export interface Nav {
   id: number;
   url: string;
   classify: string;
@@ -40,5 +40,5 @@ export class NavComponent {
     return nav.id;
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 }

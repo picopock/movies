@@ -1,25 +1,25 @@
 <div class="single-member effect-3" *ngIf="data">
-  <div class="member-image">
-    <img src="{{ data.imgUrl }}" alt="Member" />
-  </div>
-  <div class="member-info">
-    <h3 title="{{ data.name }}">{{ data.name }}</h3>
-    <h5 title="{{ data.aliasName }}">{{ data.aliasName }}</h5>
-    <h5>分类： {{ data.classify }}</h5>
-    <h5>发布时间： {{ data.publishDate | date: 'y-MM-dd' }}</h5>
-    <div class="social-touch">
-      <button class="btn" (click)="edit_movie(data.id)"><span class="glyphicon glyphicon-edit"></span></button>
-      <button class="btn" (click)="del_movie(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
-      <button class="btn" title="详情" (click)="show_detail(data.id)">
-        <span class="glyphicon glyphicon-option-horizontal"></span>
-      </button>
+    <div class="member-image">
+        <img src="{{ data.imgUrl }}" alt="Member" />
     </div>
-  </div>
+    <div class="member-info">
+        <h3 title="{{ data.name }}">{{ data.name }}</h3>
+        <h5 title="{{ data.aliasName }}">{{ data.aliasName }}</h5>
+        <h5>分类： {{ data.classify }}</h5>
+        <h5>发布时间： {{ data.publishDate | date: 'y-MM-dd' }}</h5>
+        <div class="social-touch">
+            <button class="btn" (click)="edit_movie(data.id)"><span class="glyphicon glyphicon-edit"></span></button>
+            <button class="btn" (click)="del_movie(data.id)"><span class="glyphicon glyphicon-trash"></span></button>
+            <button class="btn" title="详情" (click)="show_detail(data.id)">
+                <span class="glyphicon glyphicon-option-horizontal"></span>
+            </button>
+        </div>
+    </div>
 </div>
 
 <!--<div class="single-member effect-1">
     <div class="member-image">
-        <img src="/assets/images/member_140x145.jpg" alt="Member">
+        <img src="/images/member_140x145.jpg" alt="Member">
     </div>
     <div class="member-info">
         <h3>Sophia</h3>

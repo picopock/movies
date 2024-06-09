@@ -7,7 +7,7 @@ export default (app) => {
     app.disable('x-powered-by');
 
     app.all('*', (req, res, next) => {
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8088');
+        res.header('Access-Control-Allow-Origin', req.get('origin'));
         res.header('Access-Control-Allow-Headers', 'X-Request-With, Content-Type, Accept, Origin, withCredentials');
         res.header('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
         res.header('Access-Control-Allow-Credentials', true);

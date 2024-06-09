@@ -83,7 +83,7 @@
 
 .slider-btn .slider-btn-prev {
     left: -45px;
-    background: url(/assets/images/icon/prev.png) 50% 50% no-repeat;
+    background: url(/images/icon/prev.png) 50% 50% no-repeat;
 }
 
 .slider:hover .slider-btn-prev{
@@ -96,7 +96,7 @@
 
 .slider-btn .slider-btn-next{
     right: -45px;
-    background: url(/assets/images/icon/next.png) 50% 50% no-repeat;
+    background: url(/images/icon/next.png) 50% 50% no-repeat;
     transition: all .5s linear;
 }
 

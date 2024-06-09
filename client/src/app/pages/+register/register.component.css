@@ -4,7 +4,7 @@ div.reg-container {
     right: 0;
     top: 0;
     bottom: 0;
-    background-image: url(/assets/images/register-bg.png);
+    background-image: url(/images/register-bg.png);
     background-size: cover;
     background-repeat: no-repeat;
 }

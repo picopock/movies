@@ -9,8 +9,8 @@ import { User } from '../../pages/index/index.interface';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  @Input() isLogin: boolean;
-  @Input() user: User;
+  @Input() isLogin!: boolean;
+  @Input() user!: User | null;
   name: string = '';
   login: boolean = false;
   router: any;

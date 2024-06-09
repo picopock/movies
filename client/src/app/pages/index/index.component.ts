@@ -8,7 +8,7 @@ import { User } from './index.interface';
 })
 export class IndexComponent {
   isLogin: boolean = false;
-  user: User = null;
+  user: User | null = null;
   constructor(private indexService: IndexService) {
     this.getUser();
   }

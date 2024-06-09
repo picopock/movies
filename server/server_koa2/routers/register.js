@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken');
 const User = require('../database/index').User;
 const generatePw = require('../utils/pwHandler');
 
-router.post('/', async(ctx, next) => {
-	let _user = Object.assign({},ctx.request.body);
+router.post('/', async (ctx, next) => {
+	let _user = Object.assign({}, ctx.request.body);
 	_user.password = generatePw(_user.password);
 	try {
 		let user = await User.create(_user);
@@ -18,8 +18,8 @@ router.post('/', async(ctx, next) => {
 		});
 		ctx.body = {
 			message: '新增用户成功',
-            code: 1,
-            user: {id: user.id, username: user.username, nickname: user.nickname},
+			code: 1,
+			user: { id: user.id, username: user.username, nickname: user.nickname },
 			token
 		};
 	} catch (err) {

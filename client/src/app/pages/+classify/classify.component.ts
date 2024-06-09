@@ -27,7 +27,7 @@ export class ClassifyComponent {
     this.getCurPageData = this.getCurPageData.bind(this);
   }
 
-  classify: string;
+  classify: string = '';
   total: number = 0;
   limit: number = 20;
   curPage: number = 1;
