@@ -7,7 +7,9 @@ interface Res {
   ret_code: number;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   isLoggedIn: boolean = false;
 
@@ -18,13 +20,14 @@ export class AuthService {
 
   login() {
     return this.http
-      .get<{ ret_code: number, ret_msg: string }>('/api/isLogin')
-      .subscribe(res => {
+      .get('/api/isLogin')
+      .toPromise()
+      .then((res: any) => {
         if (res.ret_code == 0) {
           this.isLoggedIn = true;
         }
         this.redirect();
-      })
+      }).catch(this.handleError)
   }
 
   redirect() {

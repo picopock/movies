@@ -1,12 +1,15 @@
-const router = require('koa-router')();
-const jwtConfig = require('../config/jwt_config');
-const jwt = require('jsonwebtoken');
-const User = require('../database/index').User;
-const generatePw = require('../utils/pwHandler');
+import Router from 'koa-router';
+import jwt from 'jsonwebtoken';
+import { config as jwtConfig } from '../config/jwt_config.mjs';
+import { User } from '../models/index.mjs';
+import { generatePw } from '../utils/index.mjs';
+
+const router = Router();
 
 router.post('/', async (ctx, next) => {
 	let _user = Object.assign({}, ctx.request.body);
 	_user.password = generatePw(_user.password);
+	console.log('user::', _user)
 	try {
 		let user = await User.create(_user);
 		const userToken = {
@@ -30,4 +33,4 @@ router.post('/', async (ctx, next) => {
 	}
 });
 
-module.exports = router;
+export default router;

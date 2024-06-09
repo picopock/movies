@@ -112,7 +112,7 @@ export class DetailComponent {
       .then((movie: any) => {
         movie.resolution = movie.resolutionW + '*' + movie.resolutionH;
         movie.publishDate = new Date(movie.publishDate);
-        movie.links = movie.links.map((link: any) => {
+        movie.links = (movie.links || []).map((link: any) => {
           link.title = link.link;
           return link;
         });

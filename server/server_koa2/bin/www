@@ -4,12 +4,14 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('demo:server');
-var http = require('http');
+import Debug from 'debug';
+import http from 'http';
+import path from 'path';
 
-var path = require('path');
-var config = require('../config');
+import { app } from '../app.mjs';
+import { config } from '../config/index.mjs';
+
+const debug = Debug('demo:server');
 
 /*********************** check logs folder **********************************/
 // var fs = require('fs');
@@ -47,14 +49,14 @@ var config = require('../config');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(config.port || '3000');
+const port = normalizePort(config.port || '3000');
 // app.set('port', port);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app.callback());
+const server = http.createServer(app.callback());
 
 /**
  * Listen on provided port, on all network interfaces.

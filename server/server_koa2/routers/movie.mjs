@@ -1,18 +1,15 @@
-const router = require('koa-router')();
-const { Movie, Link, sequelize } = require('../database/index');
+import Router from 'koa-router';
+import { Movie, Link } from '../models/index.mjs';
 
-const utils = require('../utils/index');
+const router = Router();
 
 router.get('/', async (ctx, next) => {
   try {
     let ret = await Movie.findAndCountAll({
       include: [
-        {
-          association: Movie.Links,
-          attributes: ['link']
-        }
+        { model: Link, as: 'links' }
       ],
-      order: [[Link, 'id', 'ASC']]
+      order: [['id', 'ASC']]
     });
     ctx.body = ret;
   } catch (err) {
@@ -23,7 +20,7 @@ router.get('/', async (ctx, next) => {
 router.get('/detail/:id', async (ctx, next) => {
   try {
     let movie = await Movie.findByPk(ctx.params.id, {
-      include: [Link]
+      include: [{ model: Link, as: 'links' }]
     });
     ctx.body = movie;
   } catch (err) {
@@ -39,7 +36,6 @@ router.get('/getOne', async (ctx, next) => {
         {
           model: Link,
           as: 'links',
-          attributes: ['link']
         }
       ]
     });
@@ -57,7 +53,6 @@ router.get('/getOne1', async (ctx, next) => {
         {
           model: Link,
           as: 'links',
-          attributes: ['link']
         }
       ],
       attributes: [
@@ -161,7 +156,6 @@ router.get('/list', async (ctx, next) => {
         {
           model: Link,
           as: 'links',
-          attributes: ['link']
         }
       ]
     });
@@ -262,4 +256,4 @@ router.get('/classify/:classify', async (ctx, next) => {
   }
 });
 
-module.exports = router;
+export default router;

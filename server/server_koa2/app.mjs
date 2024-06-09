@@ -1,18 +1,19 @@
-const Koa = require('koa');
-const path = require('path');
-const app = new Koa();
-const onerror = require('koa-onerror');
-const bodyparser = require('koa-bodyparser');
-const json = require('koa-json');
-const static = require('koa-static');
-const jwt = require('koa-jwt');
-const cors = require('@koa/cors');
-const logUtil = require('./utils/log_util');
-const jwtConfig = require('./config/jwt_config');
-const router = require('./routers/route');
-const koaNunjucks = require('koa-nunjucks-2');
+import Koa from 'koa';
+import path from 'path';
+import onerror from 'koa-onerror';
+import bodyparser from 'koa-bodyparser';
+import json from 'koa-json';
+import koaStatic from 'koa-static';
+import jwt from 'koa-jwt';
+import cors from '@koa/cors';
+import koaNunjucks from 'koa-nunjucks-2';
 
-const staticDir = path.join(__dirname, '../dist');
+import { config as jwtConfig } from './config/jwt_config.mjs';
+import { logUtil } from './utils/index.mjs'
+import router from './routers/index.mjs';
+
+const app = new Koa();
+const staticDir = path.join(import.meta.dirname, '../dist');
 
 // error handler
 onerror(app);
@@ -42,7 +43,7 @@ app.use(
 // jwt
 app.use(
   jwt({ secret: jwtConfig.secret }).unless({
-    path: [/^(?!\/api).*/, /^\/api\/login/, /^\/api\/register/, /^\/api\/movie/] // 数据中的路径不需要要通过jwt验证
+    path: [/^(?!\/api).*/, /^\/api\/login/, /^\/api\/register/, '/api/movie', /^\/api\/movie\/.*/] // 数据中的路径不需要要通过jwt验证
   })
 );
 
@@ -67,7 +68,7 @@ app.use(async (ctx, next) => {
 
 // 伺服静态资源
 app.use(
-  static(staticDir, {
+  koaStatic(staticDir, {
     maxAge: 24 * 60 * 60 * 1000, // 1d
     gzip: true
   })
@@ -77,7 +78,7 @@ app.use(
 app.use(
   koaNunjucks({
     ext: 'html',
-    path: path.join(__dirname, 'views'),
+    path: path.join(import.meta.dirname, 'views'),
     nunjucksConfig: {
       trimBlocks: true
     }
@@ -102,4 +103,4 @@ app.on('error', (err, ctx) => {
   console.error('server error', err, ctx);
 });
 
-module.exports = app;
+export { app };

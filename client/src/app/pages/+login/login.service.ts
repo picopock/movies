@@ -27,7 +27,8 @@ export class LoginService {
           Accept: 'application/json'
         })
       })
-      .subscribe((ret: Res) => {
+      .toPromise()
+      .then((ret: any) => {
         if (ret.code === 1) {
           setSessionStorage('token', ret.token);
           setSessionStorage('user', JSON.stringify(ret.user));
@@ -36,7 +37,7 @@ export class LoginService {
           throw new Error(ret.message);
         }
       })
-    // .catch(this.handleError);
+      .catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

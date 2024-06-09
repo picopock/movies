@@ -1,6 +1,7 @@
 const secret = 'jwt demo';
 const passwordSecret = 'pw secret';
-module.exports = {
+
+export const config = {
     secret: secret,
-    password:　passwordSecret
+    password: passwordSecret
 }

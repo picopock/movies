@@ -1,14 +1,17 @@
-const router = require('koa-router')();
-const { Movie, Link, sequelize } = require('../database/index');
+import Router from 'koa-router';
+import { isNull } from 'lodash-es';
+import { Movie, Link } from '../models/index.mjs';
+import { sequelize } from '../database/index.mjs';
 
-const utils = require('../utils/index');
+const router = Router();
 
 router.post('/', async (ctx, next) => {
   try {
     let movie = await Movie.create(ctx.request.body, {
       include: [
         {
-          association: Movie.Links
+          model: Link,
+          as: 'links'
         }
       ]
     });
@@ -24,12 +27,17 @@ router.put('/:id', async (ctx, next) => {
   });
   try {
     let movie = await Movie.findByPk(ctx.params.id);
-    if (utils.isNull(movie)) {
+    if (isNull(movie)) {
       throw `id 为 ${ctx.params.id} 的 movie 不存在`;
     }
     await movie.destroy();
     let rows = await Movie.create(body, {
-      include: [Link]
+      include: [
+        {
+          model: Link,
+          as: 'links'
+        }
+      ]
     });
     ctx.body = rows;
   } catch (err) {
@@ -77,7 +85,7 @@ router.post('/batch/add', async (ctx, next) => {
       include: [
         {
           model: Link,
-          attributes: ['link']
+          as: 'links'
         }
       ]
     });
@@ -108,4 +116,4 @@ router.post('/batch/delete', async (ctx, next) => {
   }
 });
 
-module.exports = router;
+export default router;

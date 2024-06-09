@@ -1,8 +1,8 @@
-const path = require('path');
+import path from 'path';
 
-let logConfig = {
+const logConfig = {
     // 日志根目录
-    baseLogPath: path.resolve(__dirname, '../logs'),
+    baseLogPath: path.resolve(import.meta.dirname, '../logs'),
     // 日志保存时间(day)
     daysToKeep: 7,
     // 编码
@@ -22,7 +22,7 @@ logConfig.errorLogPath = logConfig.baseLogPath + logConfig.errorPath + '/' + log
 // 响应日志输出完整路径
 logConfig.responseLogPath = logConfig.baseLogPath + logConfig.responsePath + '/' + logConfig.responseFileName;
 
-module.exports = {
+export const config = {
     "appenders": {
         "out": {
             "type": "console"

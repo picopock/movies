@@ -1,15 +1,17 @@
-<nav aria-label="Page navigation" *ngIf="totalPage>0">
+<nav aria-label="Page navigation" *ngIf="totalPage > 0">
   <ul class="pagination">
-    <li (click)="getChangedData(page-1<1?1:page-1)">
+    <li (click)="getChangedData(page - 1 < 1 ? 1 : page - 1)">
       <a href="javascript: void(0);" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>
 
-    <li *ngIf="totalPage>5"><span>···</span></li>
-    <li *ngFor="let inx of showPage; trackBy: trackByList;let i=index;" (click)="getChangedData(inx)"><span>{{inx}}</span></li>
-    <li *ngIf="totalPage>5"><span>···</span></li>
-    <li (click)="getChangedData(page+1>totalPage?totalPage:page+1)">
+    <li *ngIf="totalPage > 5"><span>···</span></li>
+    <li *ngFor="let inx of showPage; trackBy: trackByList;let i=index;" (click)="getChangedData(inx)">
+      <span>{{inx}}</span>
+    </li>
+    <li *ngIf="totalPage > 5"><span>···</span></li>
+    <li (click)="getChangedData(page + 1 > totalPage ? totalPage : page + 1)">
       <a href="javascript: void(0);" aria-label="Next" class="next">
         <span aria-hidden="true">&raquo;</span>
       </a>

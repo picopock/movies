@@ -9,6 +9,15 @@
 .effect-3 h3 {
   padding-top: 7px;
   line-height: 33px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.effect-3 h5 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .effect-3 .member-image {

@@ -1,6 +1,6 @@
-module.exports = {
+export const config = {
   production: {
-    host: '172.17.0.1',
+    host: '10.0.0.17',
     port: 3306,
     username: 'movie',
     password: 'movie',
@@ -14,7 +14,7 @@ module.exports = {
     timezone: '+00:00'
   },
   development: {
-    host: '127.0.0.1',
+    host: '10.0.0.17',
     port: 3306,
     username: 'movie',
     password: 'movie',

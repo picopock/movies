@@ -1,31 +1,31 @@
-var log4js = require('log4js');
-var log_config = require('../config/log_config');
+import log4js from 'log4js';
+import { config as log_config } from '../config/log_config.mjs';
 
 // 加载配置文件
 log4js.configure(log_config);
 
-var logUtil = {};
+const logUtil = {};
 
-var errorLogger = log4js.getLogger('errorLogger');
-var resLogger = log4js.getLogger('resLogger');
+const errorLogger = log4js.getLogger('errorLogger');
+const resLogger = log4js.getLogger('resLogger');
 
 // 封装错误日志
 logUtil.logError = function (ctx, error, resTime) {
-    if ( ctx && error ) {
+    if (ctx && error) {
         errorLogger.error(formatError(ctx, error, resTime));
     }
 };
 
 // 封装响应日志
 logUtil.logResponse = function (ctx, resTime) {
-    if(ctx) {
+    if (ctx) {
         resLogger.info(formatRes(ctx, resTime));
     }
 };
 
 // 格式化响应日志
-var formatRes = function (ctx, resTime) {
-    var logText = new String();
+const formatRes = function (ctx, resTime) {
+    let logText = new String();
     // 响应日志开始
     logText += '\n' + '*************** response log start ***************' + '\n';
     // 添加请求日志
@@ -39,8 +39,8 @@ var formatRes = function (ctx, resTime) {
     return logText;
 }
 
-var formatError = function (ctx, error, resTime) {
-    var logText = new String();
+const formatError = function (ctx, error, resTime) {
+    let logText = new String();
     // 错误信息开始
     logText += '\n' + "*************** error log start ***************" + "\n";
     // 添加请求日志
@@ -57,9 +57,9 @@ var formatError = function (ctx, error, resTime) {
 }
 
 // 格式化请求日志
-var formatReqLog = function (req, resTime) {
-    var logText = new String();
-    var method = req.method;
+const formatReqLog = function (req, resTime) {
+    let logText = new String();
+    const method = req.method;
     // 访问方法
     logText += 'request method: ' + method + '\n';
     // 请求原始地址
@@ -67,7 +67,7 @@ var formatReqLog = function (req, resTime) {
     // 客户端IP
     logText += 'request client IP: ' + req.ip + '\n';
     // 请求参数
-    if(method === 'GET') {
+    if (method === 'GET') {
         logText += 'request query: ' + JSON.stringify(req.query) + '\n';
     } else {
         logText += 'request body: ' + '\n' + JSON.stringify(req.body) + '\n';
@@ -77,4 +77,5 @@ var formatReqLog = function (req, resTime) {
     return logText;
 }
 
-module.exports = logUtil;
+export { logUtil };
+

@@ -6,14 +6,17 @@ import { getSessionStorage } from '../../../utils/cache';
 
 @Injectable()
 export class MovieService {
-  private headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  private headers;
   private url = '/api/movies';
   private url_get = '/api/movie';
 
   constructor(private http: HttpClient) {
-    const token = getSessionStorage('token');
+    let token = null;
+    try {
+      token = getSessionStorage('token');
+    } catch (err) { }
     const authorization = `Bearer ${token}`;
-    this.headers.append('Authorization', authorization);
+    this.headers = new HttpHeaders({ 'Content-Type': 'application/json', Authorization: authorization });
   }
 
   getMovies(): Promise<any> {

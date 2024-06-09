@@ -36,9 +36,9 @@ export class PaginationComponent implements OnInit, OnChanges {
       let arr = [];
       if (this.page >= 5) arr = [this.page - 2, this.page - 1, this.page, this.page + 1, this.page + 2];
       else {
-        let curPage = this.page;
+        let curPage = this.totalPage;
         while (curPage > 0) {
-          arr.push(curPage);
+          arr.unshift(curPage);
           curPage--;
         }
       }
@@ -48,11 +48,10 @@ export class PaginationComponent implements OnInit, OnChanges {
 
   getChangedData(inx?: number) {
     this.getCurPageDatas(inx || this.goToPage);
-    this.getPageData();
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.getChangedData();
+    this.getPageData();
   }
 
   trackByList(item: number) {

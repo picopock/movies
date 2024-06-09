@@ -5,7 +5,7 @@
 .cardlist li{
 	display: inline-block;
 	padding: 2px 29px 15px 0;
-} 
+}
 .cardlist li a{
 	display: block;
 }
@@ -16,11 +16,15 @@
 	border: 1px solid #ccc;
 	border-radius: 5px;
 	position: relative;
-}  
+}
 .cardlist li a span{
 	display: block;
+  width: 120px;
 	color: #000;
 	text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .cardlist li:hover a img{
 	top: -2px;

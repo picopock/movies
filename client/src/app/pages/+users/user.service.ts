@@ -13,7 +13,7 @@ export class UserService {
     let token = null;
     try {
       token = getSessionStorage('token');
-    } catch (err) {}
+    } catch (err) { }
     const authorization = `Bearer ${token}`;
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json', Authorization: authorization });
   }
@@ -63,7 +63,7 @@ export class UserService {
   deleteUser(id: number): Promise<void> {
     const url = `${this.url}/${id}`;
     return this.http
-      .delete(url)
+      .delete(url, { headers: this.headers })
       .toPromise()
       .then(() => null)
       .catch(this.handleError);

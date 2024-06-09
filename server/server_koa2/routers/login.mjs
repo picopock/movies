@@ -1,10 +1,13 @@
-const router = require('koa-router')();
-const User = require('../database/index').User;
-const jwtConfig = require('../config/jwt_config');
-const util = require('util');
-const jwt = require('jsonwebtoken');
+import Router from 'koa-router';
+import util from 'util';
+import jwt from 'jsonwebtoken';
+import { User } from '../models/index.mjs';
+import { config as jwtConfig } from '../config/jwt_config.mjs';
+import { generatePw } from '../utils/index.mjs';
+
 const verify = util.promisify(jwt.verify); // 解密
-const generatePw = require('../utils/pwHandler');
+
+const router = Router();
 
 router.post('/', async (ctx, next) => {
   const { username, password } = ctx.request.body;
@@ -89,4 +92,4 @@ router.get('/userInfo', async ctx => {
   }
 });
 
-module.exports = router;
+export default router;

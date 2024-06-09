@@ -24,7 +24,8 @@ export class RegistryService {
             'Content-Type': 'application/json'
           })
         })
-        .subscribe(res => {
+        .toPromise()
+        .then((res: any) => {
           if (res.code == 1) {
             setSessionStorage('token', res.token);
             setSessionStorage('user', JSON.stringify(res.user));
@@ -34,7 +35,7 @@ export class RegistryService {
           }
           return null;
         })
-      // .catch(this.handleError)
+        .catch(this.handleError)
     );
   }
 
